@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Space Mono', monospace;
+        }
+
+        .bg-dark-main {
+            background-color: #000000;
+        }
+    </style>
+    <title>Gestão de Ativos no GLPI</title>
+</head>
+
+<body class="bg-dark-main text-gray-300">
+
+    <nav class="p-6 max-w-5xl mx-auto">
+        <a href="index.html"
+            class="text-xs uppercase tracking-widest text-[#C0C0C0] hover:text-white transition-colors">
+            ← Voltar
+        </a>
+    </nav>
+
+    <main class="max-w-5xl mx-auto py-12 px-6">
+
+        <header class="mb-12 border-l-4 border-[#C0C0C0] pl-6 md:pl-8">
+            <h1 class="text-3xl md:text-5xl font-bold text-white tracking-tight break-words">Gestão de Ativos no GLPI:
+                Implementação de Estação de Trabalho</h1>
+            <p class="mt-4 text-base md:text-xl text-gray-400">Otimizando o inventário e centralizando a administração
+                de hardware.</p>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+                <span
+                    class="inline-block bg-[#0b0b0b] border border-gray-800 text-[12px] text-[#C0C0C0] px-2 py-1 rounded-sm font-bold uppercase tracking-[0.2em]">
+                    𝄜 03.05.2026
+                </span>
+                <span
+                    class="inline-block bg-[#0b0b0b] border border-gray-800 text-[12px] text-[#C0C0C0] px-2 py-1 rounded-sm font-bold uppercase tracking-[0.2em]">
+                    ☰ GOVERNANÇA DE TI
+                </span>
+            </div>
+        </header>
+
+        <article class="space-y-8 text-left">
+
+            <section class="mb-12">
+                <h2 class="text-xl font-bold text-white uppercase tracking-wider mb-6">Sobre o Projeto</h2>
+                <p class="text-[#C0C0C0] leading-relaxed text-justify">
+                    Durante este laboratório, desenvolvi uma solução para melhorar a gestão de inventário no GLPI,
+                    utilizando o conceito de “Estação de Trabalho”. A proposta foi agrupar os equipamentos utilizados
+                    por um colaborador em uma única entidade lógica, facilitando a administração dos ativos. Com isso,
+                    processos como movimentação de usuários deixaram de exigir alterações manuais item por item,
+                    reduzindo retrabalho e aumentando a eficiência. Além disso, a solução garante uma rastreabilidade
+                    mais organizada e centralizada dos equipamentos, sendo escalável para ambientes de TI de médio e
+                    grande porte.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-xl font-bold text-white uppercase tracking-wider mb-6">Implementação Técnica</h2>
+
+                <div class="space-y-4 text-[#C0C0C0] leading-relaxed mb-10">
+                    <p class="font-bold text-white">1. Ambiente de teste</p>
+                    <p>Para a execução deste projeto, foi utilizada a seguinte infraestrutura:</p>
+                    <p>- Servidor: VM com Debian Server.</p>
+                    <p>- Plataforma: GLPI versão 11.0.7 (implementado via Docker).</p>
+                </div>
+
+                <div class="space-y-4 text-[#C0C0C0] leading-relaxed text-justify">
+                    <p class="font-bold text-white">2. Contextualização</p>
+                    <p>O GLPI (Gestionnaire Libre de Parc Informatique) é uma das ferramentas de código aberto mais
+                        completas do mundo para a gestão de ativos de TI e service desk. Ele permite que empresas
+                        controlem desde o inventário de hardware e software até a abertura de chamados (tickets), gestão
+                        de contratos e licenças. Sua grande força reside na capacidade de centralizar todas as
+                        informações do parque tecnológico em um único banco de dados, facilitando auditorias e o suporte
+                        técnico.</p>
+
+                    <p>Diferente do modelo convencional, onde cada hardware, como notebook, monitor e telefone, é
+                        vinculado individualmente ao usuário, a lógica aplicada neste projeto consiste na criação de um
+                        objeto centralizador chamado Estação de Trabalho. Através de listas suspensas e tipos de item,
+                        os ativos físicos são vinculados a essa Estação, que passa a ser o único registro atribuído ao
+                        colaborador final. Essa inversão de fluxo permite que, em caso de troca de funcionário, o
+                        técnico precise atualizar apenas um registro principal, enquanto todos os itens atrelados a ele
+                        herdam a nova localização e responsabilidade automaticamente.</p>
+
+                </div>
+
+                <div class="mt-16 space-y-6 text-[#C0C0C0] leading-relaxed text-justify border-t border-gray-900 pt-12">
+                    <p class="font-bold text-white text-lg">3. Configuração e Modelagem da Estação de Trabalho</p>
+                    <p>O processo começa no menu de Configurar, dentro de “Definições de Ativos”, onde clicamos em
+                        adicionar para preencher os dados básicos do novo objeto. </p>
+                </div>
+
+                <section class="mt-10 mb-8">
+                    <div class="border border-[#C0C0C0] rounded-lg overflow-hidden bg-black mb-2 w-full md:w-1/3">
+                        <img src="assets/glpi estacao de trabalho/configurar-estacao.png" alt="Configuração Zabbix"
+                            class="w-full h-auto opacity-90 hover:opacity-100 transition">
+                        <p class="p-2 text-xs text-gray-500 italic bg-[#050505]">Legenda: Aba de configurações.</p>
+                    </div>
+                </section>
+
+                <div class=text-justify>
+                    <p>Essa etapa é totalmente customizável, permitindo que você defina o nome do novo ativo, adicione
+                        comentários, altere o ícone ou até coloque uma foto para facilitar a identificação. Essa
+                        flexibilidade ajuda a deixar o sistema com a cara da empresa e torna o reconhecimento visual dos
+                        itens muito mais intuitivo para quem opera o inventário.
+                    </p>
+                </div>
+
+                <section class="mt-10 mb-8">
+                    <div class="border border-[#C0C0C0] rounded-lg overflow-hidden bg-black mb-2 w-full md:w-4/7">
+                        <img src="assets/glpi estacao de trabalho/definicao de ativo.png" alt="Configuração Zabbix"
+                            class="w-full h-auto opacity-90 hover:opacity-100 transition">
+                        <p class="p-2 text-xs text-gray-500 italic bg-[#050505]">Legenda: Configuração de Definição de
+                            Ativo.</p>
+                    </div>
+                </section>
+
+                <div class=text-justify>
+                    <p>Logo abaixo dessas definições, configuramos as capacidades, que são as abas laterais que
+                        organizam as informações do ativo. Para a Estação de Trabalho, as capacidades escolhidas foram o
+                        “Inventário”, para busca de dados técnicos, a “Pesquisa Global”, para facilitar a localização do
+                        item no sistema, e o “Gerenciamento Remoto”, essencial para centralizar o suporte ao
+                        funcionário.</p>
+                </div>
+
+                <section class="mt-10 mb-8">
+                    <div class="border border-[#C0C0C0] rounded-lg overflow-hidden bg-black mb-2 w-full md:w-4/7">
+                        <img src="assets/glpi estacao de trabalho/capacidades.png" alt="Configuração Zabbix"
+                            class="w-full h-auto opacity-90 hover:opacity-100 transition">
+                        <p class="p-2 text-xs text-gray-500 italic bg-[#050505]">Legenda: Configuração de Capacidades.
+                        </p>
+                    </div>
+                </section>
+
+                <div class=text-justify>
+                    <p>Na sequência, definimos os campos que ficarão visíveis no formulário principal. Além de utilizar
+                        os campos padrões do sistema, temos a
+                        liberdade de criar campos personalizados para o controle específico dos itens do colaborador. É
+                        neste ponto
+                        que reside o diferencial da configuração, pois é aqui que estruturamos como os ativos serão
+                        atrelados ao objeto centralizador.
+                    </p>
+                </div>
+
+                <section class="mt-10 mb-8">
+                    <div class="border border-[#C0C0C0] rounded-lg overflow-hidden bg-black mb-2 w-full md:w-4/7">
+                        <img src="assets/glpi estacao de trabalho/campos.png" alt="Configuração Zabbix"
+                            class="w-full h-auto opacity-90 hover:opacity-100 transition">
+                        <p class="p-2 text-xs text-gray-500 italic bg-[#050505]">Legenda: Configuração de Campos.</p>
+                    </div>
+                </section>
+
+                <div class=text-justify>
+                    <p>Para implementar essa funcionalidade, basta selecionar a opção de novo campo e iniciar a
+                        configuração. Primeiramente, definimos o nome do ativo e, em seguida, selecionamos o tipo "Lista
+                        Suspensa". O detalhe fundamental ocorre na configuração do "Tipo de Item", onde vinculamos a
+                        categoria de ativo desejada; no caso do monitor, por exemplo, definimos o campo para buscar
+                        dados em "Ativos - Monitor". Além dessa vinculação, o GLPI oferece opções adicionais de
+                        personalização, permitindo definir campos como obrigatórios ou ocultar informações para perfis
+                        de usuário específicos, garantindo um controle refinado sobre o inventário.</p>
+                </div>
+
+                <section class="mt-10 mb-8">
+                    <div class="border border-[#C0C0C0] rounded-lg overflow-hidden bg-black mb-2 w-full md:w-2/7">
+                        <img src="assets/glpi estacao de trabalho/campo monitor.png" alt="Configuração Zabbix"
+                            class="w-full h-auto opacity-90 hover:opacity-100 transition">
+                        <p class="p-2 text-xs text-gray-500 italic bg-[#050505]">Legenda: Configuração do campo de
+                            monitor.</p>
+                    </div>
+                </section>
+
+                <section class="mt-10 mb-8">
+                    <div class="border border-[#C0C0C0] rounded-lg overflow-hidden bg-black mb-2 w-full md:w-4/7">
+                        <img src="assets/glpi estacao de trabalho/campo computador.png" alt="Configuração Zabbix"
+                            class="w-full h-auto opacity-90 hover:opacity-100 transition">
+                        <p class="p-2 text-xs text-gray-500 italic bg-[#050505]">Legenda: Configuração do campo de
+                            computador.</p>
+                    </div>
+                </section>
+
+                <section class="mt-10 mb-8">
+                    <div class="border border-[#C0C0C0] rounded-lg overflow-hidden bg-black mb-2 w-full md:w-4/7">
+                        <img src="assets/glpi estacao de trabalho/campo telefone.png" alt="Configuração Zabbix"
+                            class="w-full h-auto opacity-90 hover:opacity-100 transition">
+                        <p class="p-2 text-xs text-gray-500 italic bg-[#050505]">Legenda: Configuração do campo de
+                            telefone</p>
+                    </div>
+                </section>
+
+                <div class=text-justify>
+                    <p>Além da estruturação dos campos, é fundamental configurar as permissões na aba de usuários para
+                        determinar quais perfis terão autonomia para interagir com esses novos registros. Essa etapa
+                        garante a segurança e a organização do diretório, definindo quem pode visualizar, criar ou
+                        editar as estações de trabalho. Como este projeto está sendo desenvolvido em ambiente de
+                        laboratório, as permissões foram concentradas no perfil administrativo, simplificando os testes
+                        de validação e garantindo acesso total a todas as funcionalidades implementadas.</p>
+                </div>
+
+                <section class="mt-10 mb-8">
+                    <div class="border border-[#C0C0C0] rounded-lg overflow-hidden bg-black mb-2 w-full md:w-4/7">
+                        <img src="assets/glpi estacao de trabalho/config usuario.png" alt="Configuração Zabbix"
+                            class="w-full h-auto opacity-90 hover:opacity-100 transition">
+                        <p class="p-2 text-xs text-gray-500 italic bg-[#050505]">Legenda: Configuração de Usuários.</p>
+                    </div>
+                </section>
+
+                <div class=text-justify>
+                    <p>Por fim, o sistema oferece um campo de traduções, garantindo que o nome do ativo seja exibido
+                        corretamente caso o ambiente do GLPI precise operar em diferentes idiomas.</p>
+                </div>
+
+                <div class="mt-16 space-y-6 text-[#C0C0C0] leading-relaxed border-t border-gray-900 pt-12"></div>
+
+                <p class="text-[#C0C0C0] leading-relaxed text-justify font-bold text-white mb-6">4. Validação e
+                    Atribuição de Ativos
+                </p>
+
+                <p class="text-[#C0C0C0] mb-8 text-justify">Para testar a eficácia da estrutura, criei um conjunto de
+                    ativos fictícios que simulam o inventário real de uma empresa. Em cada item, utilizei uma
+                    nomenclatura baseada em códigos, que podem representar o número de patrimônio ou o inventário
+                    interno. Foram cadastrados computadores, monitores e telefones, cada um com seus respectivos campos
+                    preenchidos, para garantir que houvesse dados suficientes para testar o relacionamento entre os
+                    objetos no banco de dados. </p>
+
+                <section class="mt-10 mb-8">
+                    <div class="border border-[#C0C0C0] rounded-lg overflow-hidden bg-black mb-2 w-full md:w-4/7">
+                        <img src="assets/glpi estacao de trabalho/computador 0004.png" alt="Incidente CPU"
+                            class="w-full h-auto opacity-90 hover:opacity-100 transition">
+                        <p class="p-2 text-xs text-gray-500 italic bg-[#050505]">Legenda: Cadastro de um novo ativo de
+                            computador.</p>
+                    </div>
+                </section>
+
+                <section class="mt-10 mb-8">
+                    <div class="border border-[#C0C0C0] rounded-lg overflow-hidden bg-black mb-2 w-full md:w-4/7">
+                        <img src="assets/glpi estacao de trabalho/monitor 0003.png" alt="Incidente CPU"
+                            class="w-full h-auto opacity-90 hover:opacity-100 transition">
+                        <p class="p-2 text-xs text-gray-500 italic bg-[#050505]">Legenda: Cadastro de um novo ativo de
+                            monitor.</p>
+                    </div>
+                </section>
+
+                <section class="mt-10 mb-8">
+                    <div class="border border-[#C0C0C0] rounded-lg overflow-hidden bg-black mb-2 w-full md:w-4/7">
+                        <img src="assets/glpi estacao de trabalho/telefone 0005.png" alt="Incidente CPU"
+                            class="w-full h-auto opacity-90 hover:opacity-100 transition">
+                        <p class="p-2 text-xs text-gray-500 italic bg-[#050505]">Legenda: Cadastro de um novo ativo de
+                            telefone.</p>
+                    </div>
+                </section>
+
+                <p class="mb-8">Após isso, se irmos na barra lateral onde mostra os ativos, podemos ver nosso novo campo
+                    de Estação de Trabalho.</p>
+
+                <section class="mt-10 mb-8">
+                    <div class="border border-[#C0C0C0] rounded-lg overflow-hidden bg-black mb-2 w-full md:w-1/3">
+                        <img src="assets/glpi estacao de trabalho/estacao de trabalho.png" alt="Configuração Zabbix"
+                            class="w-full h-auto opacity-90 hover:opacity-100 transition">
+                        <p class="p-2 text-xs text-gray-500 italic bg-[#050505]">Legenda: Aba de ativos.</p>
+                    </div>
+                </section>
+
+                <p class="text-[#C0C0C0] mb-8 text-justify">Após concluir a criação da estrutura, ao acessarmos o menu
+                    de Estação de
+                    Trabalho, podemos preencher todos os campos que foram configurados anteriormente. A grande vantagem
+                    dessa abordagem é que, no momento da entrega dos equipamentos, passamos a anexar os ativos
+                    diretamente à estação de trabalho do colaborador, em vez de realizar o processo inverso de vincular
+                    o colaborador individualmente a cada ativo. Essa inversão de fluxo centraliza o gerenciamento e
+                    torna qualquer movimentação futura muito mais ágil e organizada.</p>
+
+                <section class="mt-10 mb-8">
+                    <div class="border border-[#C0C0C0] rounded-lg overflow-hidden bg-black mb-2 w-full md:w-4/7">
+                        <img src="assets/glpi estacao de trabalho/colaborador.png" alt="Incidente CPU"
+                            class="w-full h-auto opacity-90 hover:opacity-100 transition">
+                        <p class="p-2 text-xs text-gray-500 italic bg-[#050505]">Legenda: Cadastro de um novo
+                            colaborador.</p>
+                    </div>
+                </section>
+
+                <div class="mt-16 space-y-6 text-[#C0C0C0] leading-relaxed border-t border-gray-900 pt-12"></div>
+
+                <p class="text-[#C0C0C0] leading-relaxed font-bold text-white mb-6">5. Rastreabilidade e Filtros de
+                    Inventário
+                </p>
+
+                <p class="text-[#C0C0C0] mb-8 text-justify">Além da agilidade na atribuição, essa estrutura otimiza
+                    significativamente a recuperação de informações e a auditoria do inventário. Com os ativos
+                    devidamente vinculados à Estação de Trabalho, é possível realizar buscas rápidas para localizar
+                    qualquer item de forma individual e precisa. Em um cenário com múltiplos colaboradores fictícios,
+                    onde cada um possui um monitor específico identificado pelos códigos 0001, 0002 e 0003, basta
+                    aplicar um filtro no campo de monitor para identificar instantaneamente com quem o dispositivo está
+                    localizado. Ao realizar essa busca, por exemplo, pelo código "0001", o GLPI cruza os dados e retorna
+                    de imediato a qual Estação de Trabalho ele pertence, revelando o colaborador responsável e a
+                    localização exata do hardware no parque tecnológico.</p>
+
+                <section class="mt-10 mb-8">
+                    <div class="border border-[#C0C0C0] rounded-lg overflow-hidden bg-black mb-2 w-full md:w-4/7">
+                        <img src="assets/glpi estacao de trabalho/pesquisa filtro.png" alt="Incidente CPU"
+                            class="w-full h-auto opacity-90 hover:opacity-100 transition">
+                        <p class="p-2 text-xs text-gray-500 italic bg-[#050505]">Legenda: Aba de Estação de Trabalhos
+                        </p>
+                    </div>
+                </section>
+
+                <section class="mt-10 mb-8">
+                    <div class="border border-[#C0C0C0] rounded-lg overflow-hidden bg-black mb-2 w-full md:w-4/7">
+                        <img src="assets/glpi estacao de trabalho/resultado pesquisa.png" alt="Incidente CPU"
+                            class="w-full h-auto opacity-90 hover:opacity-100 transition">
+                        <p class="p-2 text-xs text-gray-500 italic bg-[#050505]">Legenda: Resultado da pesquisa</p>
+                    </div>
+                </section>
+
+
+
+                <!-- ---------------------------------------------------->
+
+
+                <footer class="py-20 text-center opacity-30">
+                    <p class="text-xs uppercase tracking-widest">Lucas Zansavio Pereira</p>
+                </footer>
+
+                <script>
+                    function copyMe(button) {
+                        // Encontra a caixa (container) onde este botão específico está
+                        const container = button.closest('.code-container');
+                        // Pega o texto do comando dentro desta caixa
+                        const textToCopy = container.querySelector('code').innerText;
+
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            const originalText = button.innerText;
+                            button.innerText = 'COPIADO!';
+                            button.classList.add('bg-white', 'text-black');
+
+                            // Volta ao normal depois de 2 segundos
+                            setTimeout(() => {
+                                button.innerText = originalText;
+                                button.classList.remove('bg-white', 'text-black');
+                            }, 2000);
+                        });
+                    }
+                </script>
+
+</body>
+
+</html>
