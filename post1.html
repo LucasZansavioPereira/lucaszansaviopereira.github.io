@@ -50,7 +50,7 @@
 
             <section class="mb-12">
                 <h2 class="text-xl font-bold text-white uppercase tracking-wider mb-6">Sobre o Projeto</h2>
-                <p class="text-[#C0C0C0] leading-relaxed">
+                <p class="text-[#C0C0C0] leading-relaxed text-justify">
                     Neste laboratório eu desenvolvi um sistema de monitoramento de servidores utilizando o Zabbix, com o
                     objetivo de identificar automaticamente
                     situações de uso elevado de recursos e gerar alertas em tempo real pelo Telegram. A proposta foi
@@ -70,7 +70,7 @@
                     <p>Ambas utilizam Ubuntu Server 24.04.</p>
                 </div>
 
-                <div class="space-y-4 text-[#C0C0C0] leading-relaxed">
+                <div class="space-y-4 text-[#C0C0C0] leading-relaxed text-justify">
                     <p class="font-bold text-white">2. Contextualização</p>
                     <p>O Zabbix é uma plataforma open source de monitoramento utilizada para acompanhar o desempenho e a
                         disponibilidade de servidores, redes e aplicações.
@@ -94,9 +94,9 @@
 
                 </div>
 
-                <div class="mt-16 space-y-6 text-[#C0C0C0] leading-relaxed border-t border-gray-900 pt-12">
+                <div class="mt-16 space-y-6 text-[#C0C0C0] leading-relaxed text-justify border-t border-gray-900 pt-12">
                     <p class="font-bold text-white text-lg">3. CPU</p>
-                    <p class="font-bold text-white mb-6">3.1 Criação da trigger de CPU</p>
+                    <p class="font-bold text-white mb-6 ">3.1 Criação da trigger de CPU</p>
                     <p>Para criar a trigger de CPU, acessei o caminho Monitoramento → Hosts → Triggers e adicionei uma
                         nova trigger. Nela,
                         configurei a condição para identificar quando o uso da CPU ultrapassasse o limite definido.</p>
@@ -112,7 +112,8 @@
                 </section>
 
                 <p class="text-[#C0C0C0] leading-relaxed font-bold text-white mb-6">3.3 Testando a trigger de CPU</p>
-                <p class="mb-8">Após configurar a trigger, realizei um teste prático para validar seu funcionamento,
+                <p class="mb-8 text-justify">Após configurar a trigger, realizei um teste prático para validar seu
+                    funcionamento,
                     rodando o comando:</p>
 
                 <div class="my-8 code-container">
@@ -130,11 +131,13 @@
                     </div>
                 </div>
 
-                <p class="text-[#C0C0C0] mb-8">Esse comando cria 8 processos simultâneos que executam cálculos
+                <p class="text-[#C0C0C0] mb-8 text-justify">Esse comando cria 8 processos simultâneos que executam
+                    cálculos
                     contínuos,
                     elevando significativamente o uso da CPU do sistema.</p>
 
-                <p class="text-[#C0C0C0] mb-8">Em seguida, utilizei outro comando para acompanhar o uso da CPU em tempo
+                <p class="text-[#C0C0C0] mb-8 text-justify">Em seguida, utilizei outro comando para acompanhar o uso da
+                    CPU em tempo
                     real e confirmar que o consumo estava elevado.</p>
 
                 <div class="my-8 code-container">
@@ -160,7 +163,8 @@
                     </div>
                 </section>
 
-                <p class="text-[#C0C0C0] mb-8">Após alguns minutos, acessei o painel de incidentes do Zabbix e
+                <p class="text-[#C0C0C0] mb-8 text-justify">Após alguns minutos, acessei o painel de incidentes do
+                    Zabbix e
                     verifiquei que a trigger foi acionada corretamente, indicando que a configuração estava funcionando
                     como esperado.</p>
 
@@ -178,7 +182,8 @@
                     <p class="font-bold text-white text-lg">4. Memória RAM</p>
                     <p class="text-[#C0C0C0] leading-relaxed font-bold text-white mb-6">4.1 Criação da trigger de RAM
                     </p>
-                    <p class="mb-8">Para a memória RAM, segui o mesmo processo de criação da trigger, ajustando apenas a
+                    <p class="mb-8 text-justify">Para a memória RAM, segui o mesmo processo de criação da trigger,
+                        ajustando apenas a
                         métrica monitorada para o uso de memória.</p>
 
 
@@ -211,7 +216,8 @@
                         </div>
                     </div>
 
-                    <p class="text-[#C0C0C0] mb-8">Esse comando cria 1 processo que consome cerca de 1600 MB de memória
+                    <p class="text-[#C0C0C0] mb-8 text-justify">Esse comando cria 1 processo que consome cerca de 1600
+                        MB de memória
                         RAM,
                         mantendo e preenchendo esse uso continuamente para gerar carga no sistema.</p>
 
@@ -241,7 +247,8 @@
                         </div>
                     </section>
 
-                    <p class="text-[#C0C0C0] mb-8">Assim como no teste de CPU, o Zabbix identificou o aumento no consumo
+                    <p class="text-[#C0C0C0] mb-8 text-justify">Assim como no teste de CPU, o Zabbix identificou o
+                        aumento no consumo
                         e registrou o incidente, demonstrando que a trigger de RAM estava funcionando corretamente.</p>
 
                     <section class="mt-10 mb-10">
@@ -253,14 +260,14 @@
                         </div>
                     </section>
 
-                    <!-- ---------------------------------------------------->
-
                     <div class="mt-16 space-y-6 text-[#C0C0C0] leading-relaxed border-t border-gray-900 pt-12">
+
                         <p class="font-bold text-white text-lg">5. DISCO</p>
                         <p class="font-bold text-white">5.1 Criação da trigger de DISCO</p>
                     </div>
 
-                    <p class="text-[#C0C0C0] mb-8">Para o monitoramento de disco, criei uma trigger configurada para
+                    <p class="text-[#C0C0C0] mb-8 text-justify">Para o monitoramento de disco, criei uma trigger
+                        configurada para
                         identificar quando o uso do armazenamento ultrapassasse o limite de 80%.</p>
 
                     <section class="mt-10 mb-8">
@@ -276,7 +283,8 @@
                     <p class="text-[#C0C0C0] leading-relaxed font-bold text-white mb-6">5.4 Testando a trigger de DISCO
                     </p>
 
-                    <p class="text-[#C0C0C0] mb-8">Inicialmente, verifiquei o uso atual do disco com o comando df -h e
+                    <p class="text-[#C0C0C0] mb-8 text-justify">Inicialmente, verifiquei o uso atual do disco com o
+                        comando df -h e
                         observei que estava abaixo do limite definido.</p>
 
                     <div class="my-8 code-container">
@@ -302,7 +310,8 @@
                         </div>
                     </section>
 
-                    <p class="text-[#C0C0C0] mb-8">Para simular um cenário de alto consumo, utilizei o comando fallocate
+                    <p class="text-[#C0C0C0] mb-8 text-justify">Para simular um cenário de alto consumo, utilizei o
+                        comando fallocate
                         -l 5G teste para criar três arquivos de 5 GB,
                         fazendo com que o uso de armazenamento do sistema ultrapassasse 80%.
                     </p>
@@ -330,7 +339,8 @@
                         </div>
                     </section>
 
-                    <p class="text-[#C0C0C0] mb-8">Após isso, o Zabbix detectou a condição configurada e registrou o
+                    <p class="text-[#C0C0C0] mb-8 text-justify">Após isso, o Zabbix detectou a condição configurada e
+                        registrou o
                         incidente, confirmando que a trigger estava operando corretamente.</p>
 
                     <section class="mt-10 mb-10">
@@ -349,7 +359,8 @@
                         <p class="font-bold text-white">6.1 Criação do bot no telegram</p>
                     </div>
 
-                    <p class="text-[#C0C0C0] mb-8">Para enviar as notificações, criei um bot no Telegram utilizando o
+                    <p class="text-[#C0C0C0] mb-8 text-justify">Para enviar as notificações, criei um bot no Telegram
+                        utilizando o
                         BotFather. Iniciei a conversa com o comando /start e segui as instruções para gerar o token de
                         acesso do bot.</p>
 
@@ -365,7 +376,8 @@
 
                     <p class="font-bold text-white mb-6">6.2 Testando o bot</p>
 
-                    <p class="text-[#C0C0C0] mb-8">Depois de criar o bot, precisei obter o chat ID para que o Zabbix
+                    <p class="text-[#C0C0C0] mb-8 text-justify">Depois de criar o bot, precisei obter o chat ID para que
+                        o Zabbix
                         soubesse para onde enviar as mensagens.
                         Para isso, enviei uma mensagem ao bot e acessei o seguinte link trocando 'SEU_TOKEN' pelo token
                         gerado:</p>
@@ -385,7 +397,8 @@
                         </div>
                     </div>
 
-                    <p class="text-[#C0C0C0] mb-8">A resposta da API retornou o chat ID, que utilizei na configuração.
+                    <p class="text-[#C0C0C0] mb-8 text-justify">A resposta da API retornou o chat ID, que utilizei na
+                        configuração.
                         Em seguida, fiz um teste manual enviando uma mensagem via URL da API para confirmar que o bot
                         estava funcionando corretamente,
                         trocando 'SEUTOKENAQUI' pelo token do meu bot e 'SEUID' pelo meu ID chat.</p>
@@ -422,7 +435,8 @@
                         <p class="font-bold text-white">7.1 Criação do tipo de mídia</p>
                     </div>
 
-                    <p class="text-[#C0C0C0] mb-8">No Zabbix, acessei a seção de alertas e configurei um novo tipo de
+                    <p class="text-[#C0C0C0] mb-8 text-justify">No Zabbix, acessei a seção de alertas e configurei um
+                        novo tipo de
                         mídia para Telegram, inserindo o token do bot e o chat ID obtido anteriormente.</p>
 
                     <section class="mt-10 mb-10">
@@ -437,9 +451,11 @@
 
                     <p class="font-bold text-white mb-6">7.2 Criação da ação da trigger</p>
 
-                    <p class="text-[#C0C0C0] mb-6">Depois, configurei uma ação para que as notificações fossem enviadas
+                    <p class="text-[#C0C0C0] mb-6 text-justify">Depois, configurei uma ação para que as notificações
+                        fossem enviadas
                         automaticamente. Acessei Alertas → Ações → Ações de triggers e editei uma ação existente.</p>
-                    <p class="text-[#C0C0C0] mb-6">Ativei a ação e, no campo “Condições”, configurei para que fosse
+                    <p class="text-[#C0C0C0] mb-6 text-justify">Ativei a ação e, no campo “Condições”, configurei para
+                        que fosse
                         aplicada a incidentes não classificados,
                         garantindo que todos os tipos de incidentes fossem enviados para o Telegram.
                     </p>
@@ -462,7 +478,8 @@
                         </div>
                     </section>
 
-                    <p class="text-[#C0C0C0] mb-6">Após isso, ao acessar a aba “Operações” da ação, é possível
+                    <p class="text-[#C0C0C0] mb-6 text-justify">Após isso, ao acessar a aba “Operações” da ação, é
+                        possível
                         configurar o que será
                         executado quando ela for ativada. No campo “Operações”, definem-se as ações no momento do
                         incidente
@@ -501,7 +518,7 @@
                     </section>
 
                     <p class="font-bold text-white mb-6">7.3 Configuração do usuário</p>
-                    <p class="text-[#C0C0C0] mb-8">Por fim, configurei um usuário no Zabbix para receber as
+                    <p class="text-[#C0C0C0] mb-8 text-justify">Por fim, configurei um usuário no Zabbix para receber as
                         notificações. Acessei a seção de usuários, editei o perfil desejado e, na aba de mídia,
                         selecionei o tipo Telegram e inseri o chat ID no campo "Enviar para".</p>
 
@@ -520,10 +537,12 @@
                         <p class="font-bold text-white text-lg">8. Testes Finais</p>
                         <p class="font-bold text-white">8.1 Teste da trigger de CPU</p>
 
-                        <p class="text-[#C0C0C0] mb-6">Repeti o teste de consumo de CPU utilizando o comando stress
+                        <p class="text-[#C0C0C0] mb-6 text-justify">Repeti o teste de consumo de CPU utilizando o
+                            comando stress
                             --cpu 8 e verifiquei se as notificações estavam sendo enviadas corretamente pelo Telegram.
                         </p>
-                        <p class="text-[#C0C0C0] mb-8">Confirmei que a mensagem foi enviada tanto quando o problema foi
+                        <p class="text-[#C0C0C0] mb-8 text-justify">Confirmei que a mensagem foi enviada tanto quando o
+                            problema foi
                             detectado quanto quando a situação voltou ao normal.</p>
 
                     </div>
@@ -557,7 +576,8 @@
                     <div class="mt-16 space-y-6 text-[#C0C0C0] leading-relaxed border-t border-gray-900 pt-12">
                         <p class="font-bold text-white">8.2 Teste da trigger de RAM</p>
 
-                        <p class="text-[#C0C0C0] mb-8">Realizei novamente o teste de consumo de memória e observei o
+                        <p class="text-[#C0C0C0] mb-8 text-justify">Realizei novamente o teste de consumo de memória e
+                            observei o
                             envio das notificações.
                             Assim como no teste anterior, o alerta foi enviado corretamente no momento do incidente e
                             também na recuperação.</p>
@@ -593,9 +613,11 @@
                     <div class="mt-16 space-y-6 text-[#C0C0C0] leading-relaxed border-t border-gray-900 pt-12">
                         <p class="font-bold text-white">8.3 Teste da trigger do disco</p>
 
-                        <p class="text-[#C0C0C0] mb-6">Por fim, repeti o teste de uso de disco, preenchendo o
+                        <p class="text-[#C0C0C0] mb-6 text-justify">Por fim, repeti o teste de uso de disco, preenchendo
+                            o
                             armazenamento até ultrapassar o limite configurado.</p>
-                        <p class="text-[#C0C0C0] mb-8">O Zabbix identificou o problema e enviou a notificação pelo
+                        <p class="text-[#C0C0C0] mb-8 text-justifyz">O Zabbix identificou o problema e enviou a
+                            notificação pelo
                             Telegram, confirmando que todo o fluxo de monitoramento e alerta estava funcionando
                             corretamente.</p>
 
